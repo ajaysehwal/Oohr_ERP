@@ -1,0 +1,89 @@
+.floating { 
+    animation-name: floating;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+ 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }   
+}
+
+
+@media screen and (max-width:640px) {
+    #hero{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        width: 100%;
+        margin: auto;
+    }
+    #hero img{
+        margin: auto;
+
+    }
+    .floating{
+        margin: auto;
+    }
+}
+
+.scrolled {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+#headtext {
+    overflow: hidden;
+   }
+   #supporttext{
+    overflow: hidden;
+   }
+   
+   #headtext {
+    animation: headtext 1s ease 100ms backwards;
+   }
+   
+   #supporttext {
+    animation: headtext 1200ms ease 300ms backwards;
+   }
+   
+   @keyframes headtext {
+    from {
+     opacity: 0;
+     transform: translateY(50px);
+    }
+    to {
+     opacity: 1;
+     transform: translate(0px);
+    }
+   }
+   
+
+@media print {
+    html, body {
+      height: 100vh; /* Use 100% here to support printing more than a single page*/
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden;
+    }
+  }
+
+  #headtext{
+    font-size: 48px;
+    line-height: 1;
+  }
+  @media screen and (max-width:767px) {
+    #headtext{
+        font-size: 28px;
+        line-height: 1;
+    }
+    
+  }
+  @media screen and (min-width:767px) and (max-width:1023px){
+    #headtext{
+        font-size: 36px;
+        line-height: 1;
+    }
+    
+  }
