@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {useState} from "react";
 import React from "react";
 import Cookies from 'universal-cookie';
+import { Button, Spinner } from '@material-tailwind/react';
 import logo from "../../assets/logo.png";
 import { ToastContainer, toast } from 'react-toastify';
 const url = String(import.meta.env.VITE_REACT_API_URL);
@@ -58,13 +59,21 @@ const handlesubmit=(e:React.FormEvent<HTMLFormElement>):void=>{
    const password=data.user.password;
     admindata(email,password);
 }
+const [btnload,setbtnload]=useState(false);
 const admindata = async (email:any,password:any) => {
+  setbtnload(true);
      if(email===''){
       notify("Email is required");
+      setbtnload(false);
+
      }else{
       if(password===''){
+        setbtnload(false);
+
         notify("Password is required");
       }else{
+        setbtnload(true);
+
         try {
           const res = await axios.get(`${url}/apiadmindata/${email}`);
           const token=res.data[0];
@@ -74,15 +83,20 @@ const admindata = async (email:any,password:any) => {
            if(res.data.length==1){
               if(passworddata.admin_password!==password){
                     notify("Please enter vaild password")
+                    setbtnload(false);
+
               }else{
+                setbtnload(true);
                 const now = new Date();
       
                 const expirationDate = new Date(now.getTime() + 30 * 24 * 60 *60* 1000); // 20 minutes
-            
+              
                 const cookies = new Cookies();
                 cookies.set('_UID',token.user_token,{expires:expirationDate,path:'/'});
                 notify1("Login Successfully")
                 setTimeout(()=>{
+                  setbtnload(false);
+
               document.location.href=`/dashboard?token=${token.user_token}`
                 },2000)
               }
@@ -242,7 +256,9 @@ const admindata = async (email:any,password:any) => {
             </div>
           </div>
 
-          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2 mt-5">
+          <img className="block w-40 h-15 m-auto md:block lg:hidden" src={logo} alt="Logo" />
+
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">Start for free</span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
@@ -324,11 +340,8 @@ const admindata = async (email:any,password:any) => {
                 </div>
 
                 <div className="mb-5">
-                  <input
-                    type="submit"
-                    value="Sign In"
-                    className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                  />
+                 
+                  <Button type='submit' color='blue' className='w-full py-3'>{btnload?<Spinner style={{margin:'auto'}}/>:"Sign in"}</Button>
                 </div>
 
                 {/* <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">

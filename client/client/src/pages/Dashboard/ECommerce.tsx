@@ -1,9 +1,9 @@
 import CardFour from '../../components/CardFour.tsx';
 import CardFive from '../../components/CardFive.tsx';
-import CardSix from '../../components/CardSix.tsx';
+import CardSix from '../../components/TotalTeacherCount.tsx';
 import CardSeven from '../../components/CardSeven.tsx';
 import Cookies from 'universal-cookie';
- import Announcementbox from "../../components/complainbox.tsx";
+ import Announcementbox from "../../components/announcementCard.tsx";
 import CardOne from '../../components/CardOne.tsx';
 import CardThree from '../../components/CardThree.tsx';
 import CardTwo from '../../components/CardTwo.tsx';
@@ -12,7 +12,7 @@ import ChartThree from '../../components/ChartThree.tsx';
 import ChartTwo from '../../components/ChartTwo.tsx';
 import ChatCard from '../../components/ChatCard.tsx';
 import MapOne from '../../components/MapOne.tsx';
-import TableOne from '../../components/TableOne.tsx';
+import CalendarCard from '../../components/CalendarCard.tsx';
 import { Navigate } from 'react-router-dom';
 import Welcomebox from '../../components/welcomebox';
 const ECommerce = () => {
@@ -23,7 +23,7 @@ const ECommerce = () => {
    }
   return (
     <>
-      <div>
+      <div style={{borderRadius:'10px'}} data-aos="fade-up">
         {/* <CardOne />
         <CardTwo />
         <CardThree />
@@ -42,8 +42,8 @@ const ECommerce = () => {
         {/* <ChartTwo />  */}
         {/* <ChartThree />  */}
         {/* <MapOne /> */}
-        <div className="col-span-12 xl:col-span-8">
-          <TableOne />
+        <div  className="col-span-12 xl:col-span-12">
+          <CalendarCard />
         </div>
         {/* <ChatCard /> */}
       </div>

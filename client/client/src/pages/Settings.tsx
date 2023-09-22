@@ -15,10 +15,9 @@ const Settings = () => {
        const admin_data=admindata.data[0];
        setdata(admin_data)
        const school_data=schooldata.data[0];
-       console.log(admin_data);
-       console.log(school_data);
+     
     }catch(err){
-      console.log("Error",err);
+      return err
     }
   }
   const cookies =new Cookies();

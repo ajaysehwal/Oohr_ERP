@@ -163,7 +163,7 @@ const Admindata: React.FC = () => {
       const res = await axios.get(`${url}/apisignup/${token}`);
       setemail(res.data[0].email)
     } catch (err) {
-      console.log('Error:', err);
+      return err
     }
   }
   const postData = async (formData: any, service_id: any, template_id: any, public_key: any) => {
@@ -194,7 +194,7 @@ const Admindata: React.FC = () => {
               }
             },
             (error) => {
-              console.log(error);
+              return error;
             }
           );
         
@@ -359,7 +359,9 @@ const Admindata: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2 mt-5">
+                      <img className="block w-40 h-15 m-auto md:block lg:hidden" src={logo} alt="Logo" />
+
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">Start for free</span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">

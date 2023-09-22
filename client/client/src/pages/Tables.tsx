@@ -1,5 +1,5 @@
 import Breadcrumb from '../components/Breadcrumb';
-import TableOne from '../components/TableOne';
+import TableOne from '../components/CalendarCard';
 import TableThree from '../components/TableThree';
 import TableTwo from '../components/TableTwo';
 

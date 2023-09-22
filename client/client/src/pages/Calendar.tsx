@@ -71,7 +71,6 @@ const notify = (text: string) =>
     
     try{
       const res=await axios.post(`${url}/schoolcalenders`,events[0])
-      console.log(res.data);
         if(res.data.protocol41==true){
            successnotify("Saved");
                   getdata(auth);
@@ -98,7 +97,6 @@ const notify = (text: string) =>
               end: new Date(String(data.end)),
             },
            )
-      //  console.log(eventsdata);
      
        }
        setEvents(eventsdata);
@@ -126,15 +124,14 @@ console.log(events);
     // Update the event's start and end times
   };
 
-  console.log(events)
   return (
     <>
     
       {/* <Breadcrumb pageName="School Calendar" /> */}
 
-      <div style={{padding:'20px'}} className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div data-aos='fade-up' style={{padding:'20px'}} className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <p className='text-2xl font-bold'>School Calendar</p>
-              <Button variant='outlined' color='blue' onClick={postdata} style={{display:'flex',alignItems:'center',justifyContent:'right',marginLeft:'auto'}}>Save</Button>
+              <Button color='blue' onClick={postdata} style={{display:'flex',alignItems:'center',justifyContent:'right',marginLeft:'auto'}}>Save</Button>
 
         <Calendar
          
@@ -156,4 +153,5 @@ console.log(events);
     </>
   );
 };
+
 

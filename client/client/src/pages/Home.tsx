@@ -8,7 +8,6 @@ import Footer from "../components/footer";
 import Howitsworks from '../components/howitsworks';
 
 export default function Home() {
-  console.log(import.meta.env.VITE_REACT_API_URL)
   return (
     <body style={{background:"white"}}>
 

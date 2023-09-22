@@ -114,10 +114,10 @@ const [load,setload]=useState(false);
   ): void => {
     emailjs.sendForm(service_id, template_id, form.current, public_key).then(
       (result) => {
-        console.log(result.text);
+       return (result.text);
       },
       (error) => {
-        console.log(error.text);
+       return (error.text);
       }
     );
   };
@@ -269,7 +269,9 @@ const [load,setload]=useState(false);
             </div>
           </div>
 
-          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+          <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2 mt-5">
+          <img className="block w-40 h-15 m-auto md:block lg:hidden" src={logo} alt="Logo" />
+
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
               <span className="mb-1.5 block font-medium">Start for free</span>
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">

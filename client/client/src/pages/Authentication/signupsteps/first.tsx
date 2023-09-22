@@ -67,6 +67,8 @@ export default function First({sendemail}) {
     setloader(true);
     const user_email = data.verify.to_email;
     if(user_email==''){
+      setloader(false);
+
      notify("Please enter your email for verify");
     }else{
     const token = generateRandomToken();
@@ -105,7 +107,8 @@ export default function First({sendemail}) {
           })
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      setloader(false);
+     notify("Internal API Error");
     }
   };
   
@@ -125,9 +128,9 @@ export default function First({sendemail}) {
         <DialogBody
           style={{
             background: 'rgb(3,178,66)',
-            color: 'white',
-            padding: '10px',
-            textAlign: 'center',
+            color:'white',
+            padding:'10px',
+            textAlign:'center',
           }}
         >
           Thanks for your interest in Oohr ERP System, please check your email to{' '}
