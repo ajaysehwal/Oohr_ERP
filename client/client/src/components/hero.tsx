@@ -1,5 +1,5 @@
 // import React from "react";
-import hero from "../assets/images/hero.jpg";
+import hero from "../assets/images/heroimg.jpg";
 import "../styles/home.css";
 import { Button } from "@material-tailwind/react";
 import {Link} from "react-router-dom";
@@ -15,7 +15,8 @@ export default function Hero() {
         id="hero"
         className="grid grid-cols-2 gap-4"
       >
-        <div
+        <div 
+        data-aos="fade-right"
           style={{
             display: "flex",
             alignItems: "center",
@@ -32,7 +33,7 @@ export default function Hero() {
           >
             <h1
             
-              className="font-bold text-5xl"
+              className="font-bold text-5xl text-graydark"
               id="headtext"
               style={{ marginBottom: "10px",padding:"10px", }}
             >
@@ -59,7 +60,7 @@ export default function Hero() {
                  
           </div>
         </div>
-        <div>
+        <div data-aos='fade-left'>
           <img
             className="h-full w-full floating"
             width="100%"

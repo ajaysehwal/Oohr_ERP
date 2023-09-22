@@ -47,7 +47,7 @@ const {howitsworksRef}=useContext(AuthContext);
         </div>
          <div  style={{margin:"auto",alignItems:"center",width:'90%'}} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
             {data.map((el)=>(
- <Card style={{border:'1px solid silver', height:"280px"}} className="mt-6">
+ <Card data-aos='fade-up' style={{border:'1px solid silver', height:"280px"}} className="mt-6">
  <CardBody>                                                                                                     
    <Typography variant="h5" color="blue-gray" className="mb-2">
     {el.title}

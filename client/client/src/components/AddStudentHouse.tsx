@@ -133,7 +133,6 @@ const [upload,setupload]=useState(false);
 }
 const [filterval,setfilterval]=useState();
 const searchbarchange=(e:React.ChangeEvent<HTMLInputElement>)=>{
-    console.log(e.target.value);
       if(e.target.value===''){
            setclasses(finaldata);
       }else{
@@ -152,7 +151,7 @@ useEffect(()=>{
   return (
     <div>
     <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
-      <div className="flex flex-col gap-9">
+      <div data-aos='fade-right' className="flex flex-col gap-9">
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
             <h3
@@ -220,7 +219,7 @@ useEffect(()=>{
         </div>
       </div>
 
-      <div className="flex flex-col gap-9">
+      <div data-aos='fade-left' className="flex flex-col gap-9">
         {/* <!-- Sign In Form --> */}
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <div

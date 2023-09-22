@@ -89,8 +89,11 @@ export default function AddClasses_section() {
        if(formdata.section_name==="A"||formdata.section_name==="B"||formdata.section_name==="C"){
           notify("Section Already Exists in our system");
        }else{
+         if(formdata.class_name===''){
+          notify("Please Select Class");
+        }else{
            postsection(formdata);
-
+         }
        }
     }
   };
@@ -162,7 +165,7 @@ export default function AddClasses_section() {
   return (
     <div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
-        <div className="flex flex-col gap-9">
+        <div data-aos="fade-right" className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <h3
@@ -271,7 +274,7 @@ export default function AddClasses_section() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-9">
+        <div data-aos="fade-left" className="flex flex-col gap-9">
           {/* <!-- Sign In Form --> */}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div

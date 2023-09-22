@@ -2,16 +2,18 @@ import axios from 'axios';
 import React, { useEffect, useState,useRef } from 'react'
 import Cookies from 'universal-cookie'
 import { useForm } from 'react-hook-form';
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
+ Spinner,
 } from "@material-tailwind/react";
+
+import PrintIcon from '@mui/icons-material/Print';
+import { Chip } from '@mui/material';
  import notfound from "./images/notfound.png"
 import emptyfolder from "./images/emptyfolder.png";
 import { useReactToPrint } from 'react-to-print';
-import { Button } from '@material-tailwind/react';
+import {IconButton,Button} from '@mui/material';
 import { Link } from 'react-router-dom';
 export default function Schooltimetable() {
   const {register,handleSubmit,watch,formState:{errors}}=useForm();
@@ -21,6 +23,7 @@ export default function Schooltimetable() {
   const handleOpen = () => setOpen(!open);
   const [getclass,setclass]=useState([]);
   const [section,setsection]=useState([]);
+  const [btnload,setbtnload]=useState(false);
     const cookies = new Cookies();
     const auth=cookies.get('_UID');
     const [timetable,settimetable]=useState([]);
@@ -35,34 +38,39 @@ export default function Schooltimetable() {
           setsection(res.data)
         
       }catch(err){
-       
-         console.log("error",err);
+        return err
       }
     }
     const gettimetable=async(classes:any,section:any,school_id:any)=>{
+      setbtnload(true);
         try{
             const res=await axios.get(`${url}/schooltimetablebyclasses/${classes}/${section}/${school_id}`);
               if(res.data.length===0){
                 handleOpen();
+                setbtnload(false)
               }else{
                 settimetable(res.data);
+                setbtnload(false)
+
               }
         }catch(err){
           settimetable([]);
           handleOpen();
+          setbtnload(false)
+
             return err;
         }
       
     }
    
     const onSubmit=(data:any)=>{
-      console.log(data);
+      setbtnload(true);
         gettimetable(data.class,data.section,auth);
        
     }
   return (
-      <div>
-        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"  style={{width:'100%',margin:'auto',display:'flex',alignItems:'center',justifySelf:'center',gap:'10px',padding:'20px'}} >
+      <div data-aos="fade-up">
+        <div data-aos="fade-bottom" className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"  style={{width:'100%',margin:'auto',display:'flex',alignItems:'center',justifySelf:'center',gap:'10px',padding:'20px'}} >
         <select  className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"  {...register('class',{onChange:(e:React.ChangeEvent<HTMLInputElement>)=>{
                    getsectionbyclass(e.target.value,auth);}}) } >
             <option value="">Select Class</option>
@@ -97,22 +105,38 @@ export default function Schooltimetable() {
         ))}
        
       </select>
-      <Button onClick={handleSubmit(onSubmit)} color="green" style={{display:'flex',alignItems:'center',gap:'3px'}}>
-        
-        <p>Get</p>
-       <svg className="h-4 w-4"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/> 
-         <circle cx="10" cy="10" r="7" /> 
-          <line x1="7" y1="10" x2="13" y2="10" />  
-          <line x1="10" y1="7" x2="10" y2="13" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
-      </Button>
+     
+      <button onClick={handleSubmit(onSubmit)} type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+          {btnload ? (<Spinner style={{ margin: 'auto' }} />) : (
+
+            <p style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>Get
+              <svg
+                className="h-4 w-4"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                {' '}
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <circle cx="10" cy="10" r="7" />
+                <line x1="7" y1="10" x2="13" y2="10" />
+                <line x1="10" y1="7" x2="10" y2="13" />{' '}
+                <line x1="21" y1="21" x2="15" y2="15" />
+              </svg>
+            </p>
+          )}
+        </button>
         </div>
        
-         <div style={{marginTop:'10px',padding:'10px'}} className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+         <div data-aos="fade-up" style={{marginTop:'10px',padding:'10px'}} className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         
-        <Button variant='outlined'  color='blue' onClick={generatepdf} style={{display:'flex',alignItems:'center',justifyContent:'center',gap:"5px",marginLeft:'auto'}}>
-         <svg className="h-6 w-6"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> 
-          <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 3v4a1 1 0 0 0 1 1h4" />  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />  
-         <line x1="12" y1="11" x2="12" y2="17" />  <polyline points="9 14 12 17 15 14" /></svg>Download as Pdf</Button>
+         <Chip  onClick={generatepdf} icon={<PrintIcon />} label="Print" />
+
                 <div  style={{width:"100%"}} ref={coverttopdf}  className="max-w-full overflow-x-auto">
           <table style={{marginTop:'10px'}}  className="w-full table-auto">
             <thead>
@@ -226,7 +250,7 @@ export default function Schooltimetable() {
             <p>
               
             </p>
-            <Button style={{width:'100px',margin:'10px'}} variant="gradient" color="green" onClick={handleOpen}>
+            <Button variant="contained" style={{width:'100px',margin:'10px'}} color="success" onClick={handleOpen}>
             <span>Ok</span>
           </Button>
           </div>

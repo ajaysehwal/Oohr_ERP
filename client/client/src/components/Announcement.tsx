@@ -35,7 +35,6 @@ export default function Announcement() {
   const handleOpen3 = (Key:any) =>{
     setOpen3(true)
     getdatabyid_for_view(auth,Key);
-    console.log(viewdataheading);
   } 
   const close3=()=>{
     setOpen3(false);
@@ -161,7 +160,6 @@ export default function Announcement() {
     }
 }
   const OnSubmit=async(data:any)=>{
-    console.log(data);
     if(data.heading===''&& data.notice===''){
       notify("All input fields are required");
    }else{
@@ -177,7 +175,6 @@ export default function Announcement() {
      }
      try{
       const res=await axios.put(`${url}/schoolannouncement/${keyupdate}`,send);
-      console.log(res);
       if(res.status===200){
         getdata(auth)
         setpastdataheading('');
@@ -211,7 +208,6 @@ export default function Announcement() {
       }
       try{
        const res=await axios.post(`${url}/schoolannouncement`,send);
-         console.log(res.data);
           if(res.data.protocol41==true){
             successnotify("Announcement created")
             getdata(auth);
@@ -241,7 +237,7 @@ export default function Announcement() {
           {data?.map((el)=>(
            
         
-           <div key={el.id} className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+           <div data-aos='fade-up' key={el.id} className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                  <div className='p-5'>
                    <div style={{display:'flex',alignItems:'center' ,gap:'5px'}}>
                      <div  >
@@ -357,7 +353,7 @@ export default function Announcement() {
         <DialogBody>
         <div>
       
-        <div style={{padding:'20px'}} className="w-full max-w-full rounded-sm bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div style={{padding:'20px'}} className="w-full max-w-full rounded-sm bg-white dark:border-strokedark dark:bg-boxdark">
        
        <p className='text-2xl font-bold text-center' >Add Announcement</p>
 <ToastContainer></ToastContainer>
@@ -374,7 +370,7 @@ export default function Announcement() {
 <textarea id="message"  {...submitform.register('notice')} rows="10" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Start Writing new Announcement..."></textarea>
    </div>
     
-    <Button color='green' onClick={submitform.handleSubmit(onSubmitdata)} >Add Announcement</Button>
+    <Button color='green' onClick={submitform.handleSubmit(onSubmitdata)} >Create Announcement</Button>
      </form>
        
    </div>

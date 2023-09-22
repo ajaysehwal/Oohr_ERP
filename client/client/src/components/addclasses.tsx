@@ -114,7 +114,6 @@ export default function AddClasses() {
   };
   const [filterval, setfilterval] = useState();
   const searchbarchange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     if (e.target.value === '') {
       setclasses(finaldata);
     } else {

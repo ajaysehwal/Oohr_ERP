@@ -6,6 +6,18 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+
+import { Chip } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import PrintIcon from '@mui/icons-material/Print';
+import NonTeacheredit from './nonteacheredit';
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+} from '@material-tailwind/react';
  import axios from 'axios';
  import { useReactToPrint } from 'react-to-print';
 
@@ -13,6 +25,7 @@ import {
  import Cookies from 'universal-cookie';
 import NonTeachering from './nonteacher';
 import emptyfolder from "./images/emptyfolder.png";
+import { Link } from 'react-router-dom';
 
 export default function Nonteachertable() {
   const url = String(import.meta.env.VITE_REACT_API_URL);
@@ -40,7 +53,7 @@ export default function Nonteachertable() {
 
   const handleOpen = () => setOpen(!open);;
   const close=()=>{
-    setOpen(false);
+    setOpen(!open);
   }
   const getstaffdata=async(id:any)=>{
     setload(true);
@@ -102,30 +115,111 @@ export default function Nonteachertable() {
     }
     setfilterdepartment(e.target.value);
   };
+  const [name, setname] = useState('');
+  const [dob, setdob] = useState('');
+  const [address, setaddress] = useState('');
+  const [religion, setreligion] = useState('');
+  const [phone, setphone] = useState('');
+  const [email, setemail] = useState('');
+  const [martial_status, setmartial_status] = useState('');
+  const [qualification, setqualification] = useState('');
+  const [department, setdepartment] = useState('');
+  const [status, setstatus] = useState('');
+  const [accountholdername, setaccountname] = useState('');
+  const [accountnumber, setaccountnumber] = useState('');
+  const [bankname, setbankname] = useState('');
+  const [branch, setbranch] = useState('');
+  const [teacher_id,setteacher_id]=useState('');
+  const [updateimg,setupdateimg]=useState('');
+
+  const [salary, setsalary] = useState('');
+  const updatedteacher = {
+    name,
+    dob,
+    address,
+    religion,
+    phone,
+    email,
+    martial_status,
+    qualification,
+    department,
+    status,
+    teacher_id,
+
+    accountholdername,
+    accountnumber,
+    bankname,
+    salary,
+    branch
+  };
+  const changeupdateteacher = {
+    setname,
+    setdob,
+    setaddress,
+    setreligion,
+    setphone,
+    setemail,
+    setmartial_status,
+    setqualification,
+    setdepartment,
+    setstatus,
+    setaccountname,
+    setaccountnumber,
+    setbankname,
+    setsalary,
+    setbranch
+  };
   const getsinglestaffdata=async(id:any,school_id:any)=>{
     setsingleload(true);
-   try{
+  try{
   const res=await axios.get(`${url}/nonteacherapi/${school_id}/${id}`);
-  setsingleload(false);
   setsinglestaff(res.data);
+  const changedata = res.data[0];
+  setname(changedata.name);
+  setdob(changedata.dob);
+  setreligion(changedata.religion);
+  setphone(changedata.phone);
+  setemail(changedata.email);
+  setaddress(changedata.address);
+  setdepartment(changedata.department);
+  setqualification(changedata.qualification);
+  setmartial_status(changedata.martialstatus);
+  setstatus(changedata.status);
+  setaccountname(changedata.accountholdername);
+  setbankname(changedata.bankname);
+  setteacher_id(changedata.id);
+  setsalary(changedata.joiningsalary);
+  setupdateimg(changedata.img)
+
+  setaccountnumber(changedata.accountnumber);
+  setaccountnumber(changedata.accountnumber);
+  setbranch(changedata.branch)
+  setsingleload(false);
+
    }catch(err){
     setsingleload(false);
     return err
    }
   }
+  const [editopen, editsetOpen] = useState(false);
+
+  const edithandleOpen = (id: any) => {
+    editsetOpen(!editopen);
+    getsinglestaffdata(id,auth);
+  };
+  const editclose=()=>{
+    editsetOpen(!editopen)
+  }
+
   return (
-    <div> 
-      <Button  onClick={handleOpen}color='green' style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:"2px",width:'200px',textAlign:'center',justifyContent:'center'}}>
-    <svg className="h-6 w-6"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-</svg>
-Add New</Button>
+    <div data-aos="fade-up"> 
+   
             <div
-        style={{ marginTop: '10px' }}
+      
         className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
       >
          
-       <div className='grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3'>
+       <div className='grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-3 mb-2'>
           <div>
           <label className="sr-only">Search</label>
           <div className="relative w-full">
@@ -189,11 +283,12 @@ Add New</Button>
             </select>
           </div>
       
-          <div>
-          <Button onClick={generatepdf} color='orange' style={{marginLeft:'auto',display:'flex',alignItems:'center',gap:"2px"}}>
-          <svg className="h-6 w-6"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 3v4a1 1 0 0 0 1 1h4" />  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-          <line x1="12" y1="11" x2="12" y2="17" />  <polyline points="9 14 12 17 15 14" /></svg>
-          Print as Pdf</Button>
+          
+          <div className='flex gap-2 align-middle'>
+          <Chip onClick={generatepdf} icon={<PrintIcon />} label="Print" />
+          <Chip onClick={handleOpen} style={{padding:'5px'}}  icon={<PersonAddAlt1Icon />} label="Add Teachers" />
+
+         
           </div>
           </div>
         <div className="max-w-full overflow-x-auto">
@@ -223,6 +318,9 @@ Add New</Button>
                 </th>
                 <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                   Date of Joining
+                </th>
+                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -254,12 +352,12 @@ Add New</Button>
                  </p>
                
                </div>
-            ):staff.map((el)=>(
+            ):staff.map((el,i)=>(
 
            
-        <tr>
+        <tr style={{ borderBottom: '1px silver silver' ,background:i%2?'#f1f5f9':'white' }}>
           <td  onClick={()=>handleOpensingle(el.id)} className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-         <img width="80px" src={`${url}/${el.img}`} alt="" />    
+         <img width="90px" src={`${url}/${el.img}`} alt="" />    
           </td>
           <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
             {el.name}
@@ -283,12 +381,120 @@ Add New</Button>
           <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
             {el.dateofjoining}
           </td>
+          <td
+                      className="flex items-center justify-end px-4 py-3"
+                      style={{ textAlign: 'center' }}
+                    >
+                      <Menu
+                        animate={{
+                          mount: { y: 0 },
+                          unmount: { y: 25 },
+                        }}
+                      >
+                        <MenuHandler>
+                          <Button
+                            variant="text"
+                            color="silver"
+                            style={{ marginTop: '20px' }}
+                          >
+                            <svg
+                              className="h-5 w-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              style={{ color: 'gray' }}
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                            </svg>
+                          </Button>
+                        </MenuHandler>
+                        <MenuList>
+                          <MenuItem>
+                            <button
+                            onClick={()=>handleOpensingle(el.id)}
+                              className="hover:text-primary"
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '5px',
+                              }}
+                            >
+                              <svg
+                                className="fill-current"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M8.99981 14.8219C3.43106 14.8219 0.674805 9.50624 0.562305 9.28124C0.47793 9.11249 0.47793 8.88749 0.562305 8.71874C0.674805 8.49374 3.43106 3.20624 8.99981 3.20624C14.5686 3.20624 17.3248 8.49374 17.4373 8.71874C17.5217 8.88749 17.5217 9.11249 17.4373 9.28124C17.3248 9.50624 14.5686 14.8219 8.99981 14.8219ZM1.85605 8.99999C2.4748 10.0406 4.89356 13.5562 8.99981 13.5562C13.1061 13.5562 15.5248 10.0406 16.1436 8.99999C15.5248 7.95936 13.1061 4.44374 8.99981 4.44374C4.89356 4.44374 2.4748 7.95936 1.85605 8.99999Z"
+                                  fill=""
+                                />
+                                <path
+                                  d="M9 11.3906C7.67812 11.3906 6.60938 10.3219 6.60938 9C6.60938 7.67813 7.67812 6.60938 9 6.60938C10.3219 6.60938 11.3906 7.67813 11.3906 9C11.3906 10.3219 10.3219 11.3906 9 11.3906ZM9 7.875C8.38125 7.875 7.875 8.38125 7.875 9C7.875 9.61875 8.38125 10.125 9 10.125C9.61875 10.125 10.125 9.61875 10.125 9C10.125 8.38125 9.61875 7.875 9 7.875Z"
+                                  fill=""
+                                />
+                              </svg>
+                              <p> Preview</p>
+                            </button>
+                          </MenuItem>
+                          <MenuItem>
+                            <button
+                              onClick={() => edithandleOpen(el.id)}
+                              className="hover:text-primary"
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '5px',
+                              }}
+                            >
+                              <svg
+                                className="h-6 w-6"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              >
+                                {' '}
+                                <path stroke="none" d="M0 0h24v24H0z" />{' '}
+                                <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />{' '}
+                                <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />{' '}
+                                <line x1="16" y1="5" x2="19" y2="8" />
+                              </svg>
+                              <p> Edit</p>
+                            </button>
+                          </MenuItem>
+                        </MenuList>
+                      </Menu>
+                    </td>
         </tr>
          ))}
           </tbody>
           </table>
         </div>
+        <p className='font-semibold'>Total results  {staff.length}</p>
+
       </div>
+      <Dialog open={editopen} size='xl' handler={edithandleOpen}>
+      <DialogHeader style={{textAlign:'center',margin:'auto'}}>
+        <img
+                style={{width:'200px',height:"150px",margin:"auto"}}
+                className="rounded-full object-cover object-center"
+                src={`${url}/${updateimg}`}
+                alt="student img"
+              />
+        </DialogHeader>
+        {singleload?<Spinner className="m-auto w-10 h-10"/>:(
+   <DialogBody className='h-[30rem] overflow-scroll bg-white  dark:bg-boxdark'>
+   <NonTeacheredit  data={[updatedteacher,changeupdateteacher,editclose,getstaffdata]} />
+ </DialogBody>
+        )}
+      
+      </Dialog>
       <Dialog
        className="h-[40rem] w-[40rem]  overflow-scroll  bg-white  dark:bg-boxdark"
        open={open}
@@ -296,7 +502,7 @@ Add New</Button>
       handler={handleOpen}
       >
         <DialogBody>
-           <NonTeachering/>
+           <NonTeachering mydata={[getstaffdata,close]}/>
         </DialogBody>
       
       </Dialog>
@@ -308,8 +514,9 @@ Add New</Button>
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
         }}
+        size='xl'
       >
-         {singleload?<Spinner/>:singleataff?.map((el)=>(
+         {singleload?<Spinner className='w-10 h-10' style={{margin:'auto'}}/>:singleataff?.map((el)=>(
 
         
          <div key={el.id} style={{padding:'20px'}}>
@@ -363,7 +570,7 @@ Add New</Button>
 {el.status}</div>
      <div  style={{borderBottom:'1px solid silver',padding:'10px'}}>
      <p className="font-semibold">Identity Document</p>
-<a href={`${url}/${el.identifydocument}`} style={{color:'blue'}}>Click here</a></div>
+<Link to={`${url}/${el.identitydocument}`} style={{color:'blue'}}>Click here</Link></div>
    <div style={{borderBottom:'1px solid silver',padding:'10px'}}>
    <p className="font-semibold">Bank Name</p>
    {el.bankname}

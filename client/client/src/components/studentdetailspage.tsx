@@ -89,10 +89,7 @@ export default function Studentdetailspage() {
                 <h3 className="text-1xl font-bold">Mother name</h3>
                 {el.mother_name}
               </div>
-              <div style={{ borderBottom: '1px solid silver' }}>
-                <h3 className="text-1xl font-bold">Mother tougue</h3>
-                {el.mother_tougue}
-              </div>
+              
               <div style={{ borderBottom: '1px solid silver' }}>
                 <h3 className="text-1xl font-bold">Admission no</h3>
                 {el.admission_no}
@@ -125,12 +122,7 @@ export default function Studentdetailspage() {
                 <h3 className="text-1xl font-bold">Previous school name</h3>
                 {el.previous_school_name}
               </div>
-              <div style={{ borderBottom: '1px solid silver' }}>
-                <h3 className="text-1xl font-bold">
-                Last class
-                </h3>
-                {el.class_in_which_was_studing}
-              </div>
+            
               <div style={{ borderBottom: '1px solid silver' }}>
                 <h3 className="text-1xl font-bold">Email</h3>
                 {el.email}
@@ -159,10 +151,7 @@ export default function Studentdetailspage() {
                 <h3 className="text-1xl font-bold">Section</h3>
                 {el.section}
               </div>
-              <div style={{ borderBottom: '1px solid silver' }}>
-                <h3 className="text-1xl font-bold">Place birth</h3>
-                {el.place_birth}
-              </div>
+           
               <div style={{ borderBottom: '1px solid silver' }}>
                 <h3 className="text-1xl font-bold">State</h3>
                 {el.state}
@@ -171,10 +160,7 @@ export default function Studentdetailspage() {
                 <h3 className="text-1xl font-bold">Blood group</h3>
                 {el.blood_group}
               </div>
-              <div style={{ borderBottom: '1px solid silver' }}>
-                <h3 className="text-1xl font-bold">Date of leaving</h3>
-                {el.dateofleaving}
-              </div>
+         
               <div style={{ borderBottom: '1px solid silver' }}>
                 <h3 className="text-1xl font-bold">Identity Document</h3>
                 {el.birth_certificate}

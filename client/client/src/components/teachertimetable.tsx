@@ -15,13 +15,11 @@ export default function Teachertimetable() {
   const [load, setload] = useState(false);
   const [teachername,setname]=useState('');
   const auth = cookies.get('_UID');
-  console.log(teacher_id);
   const getteacherbyteacherdata = async (auth: any, teacher_id: any) => {
     try {
       const res = await axios.get(
         `${url}/teacherdata/${teacher_id}/${auth}`
       );
-      console.log(res.data);
     } catch (err) {
       return err;
     }

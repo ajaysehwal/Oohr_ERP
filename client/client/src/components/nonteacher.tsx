@@ -4,11 +4,14 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import { Spinner } from '@material-tailwind/react';
 import Nonteachertable from "./nonteachertable";
+import { Avatar, Divider } from '@mui/material';
+
 import { Link, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-export default function NonTeachering() {
+export default function NonTeachering({mydata}) {
+  const getdata=mydata[0];
   const {
     register,
     handleSubmit,
@@ -54,15 +57,34 @@ export default function NonTeachering() {
       setSelectedFile1(event.target.files[0]);
     }
   };
+  const [imageURL, setImageURL] = useState<string | null>(null);
 
   const handleFileChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setSelectedFile2(event.target.files[0]);
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+          const url = event.target.result;
+
+          setImageURL(url);
+        };
+
+        reader.readAsDataURL(file);
+      }
     }
   };
+  const FormReset=()=>{
+    const form=document.querySelector('#teacherform');
+    if(form){
+      form.reset();
+    }
+   
+  }
   const onSubmit = async(data: any) => {
     setload(true);
-    console.log(selectedFile1,selectedFile2);
 
          if(data.name==""||data.dob==''||data.gender==''||data.email===''||data.phone==''||data.qualification==''||data.martial_status==''||data.department==''){
           setload(false);
@@ -74,40 +96,43 @@ export default function NonTeachering() {
          setload(false);
 
           }else{
-            if (selectedFile1 && selectedFile2) {
+             if(data.phone.length!==10){
+               notify('Please enter 10 characters phone number')
+             }else{
+              if (selectedFile1 && selectedFile2) {
 
-            setload(true);
-
-            const formData = new FormData();
-            formData.append('file1', selectedFile1);
-            formData.append('file2', selectedFile2);
-            formData.append('name', data.name);
-            formData.append('dob',data.dob);
-            formData.append('facebook', data.facebook);
-            formData.append('bloodgroup', data.bloodgroup);
-            formData.append('twitter', data.twitter);
-            formData.append('linkedin', data.linkedin);
-            formData.append('gender', data.gender);
-            formData.append('address', data.address);
-            formData.append('religion', data.religion);
-            formData.append('phone', data.phone);
-            formData.append('email', data.email);
-            formData.append('martial_status', data.martial_status);
-            formData.append('qualification', data.qualification);
-            formData.append('department', data.department);
-            formData.append('status', data.status);
-            formData.append('accountholdername', data.accountholdername);
-            formData.append('accountnumber', data.accountnumber);
-            formData.append('bankname', data.bankname);
-            formData.append('branch', data.branch);
-            formData.append('joiningsalary', data.joiningsalary);
-            formData.append('dateofjoining', data.dateofjoining);
-            formData.append('school_id',verified_token);
-            postnonteacherdata(formData);
-            }else{
-              setload(false);
-              notify('Please Upload Identity document')
-            }
+                setload(true);
+    
+                const formData = new FormData();
+                formData.append('file1', selectedFile1||'');
+                formData.append('file2', selectedFile2||'');
+                formData.append('name', data.name);
+                formData.append('dob',data.dob);
+                formData.append('bloodgroup', data.bloodgroup);
+           
+                formData.append('gender', data.gender);
+                formData.append('address', data.address);
+                formData.append('religion', data.religion);
+                formData.append('phone', data.phone);
+                formData.append('email', data.email);
+                formData.append('martial_status', data.martial_status);
+                formData.append('qualification', data.qualification);
+                formData.append('department', data.department);
+                formData.append('status', data.status);
+                formData.append('accountholdername', data.accountholdername);
+                formData.append('accountnumber', data.accountnumber);
+                formData.append('bankname', data.bankname);
+                formData.append('branch', data.branch);
+                formData.append('joiningsalary', data.joiningsalary);
+                formData.append('dateofjoining', data.dateofjoining);
+                formData.append('school_id',verified_token);
+                postnonteacherdata(formData);
+                }else{
+                  setload(false);
+                  notify('Please Upload Identity document')
+                }
+             }
+          
           }
         
         }
@@ -124,6 +149,9 @@ const postnonteacherdata=async(data:any)=>{
      if(response.data.protocol41===true){
       successnotify("Registered Successfully");
       setload(false);
+      mydata[1]();
+      FormReset();
+      getdata(verified_token);
       
       }else{
      notify("Something went wrong please try again")
@@ -141,19 +169,41 @@ const postnonteacherdata=async(data:any)=>{
       <ToastContainer></ToastContainer>
     <div
       style={{ padding: '20px' }}
-      className="rounded-sm  bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+      className="rounded-sm  bg-white dark:border-strokedark dark:bg-boxdark"
     >
       <form
+      id='teacherform'
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
         method="post"
         style={{ width: '90%', margin: 'auto' }}
         action=""
       >
-        <p className="font-bold text-2xl text-center mb-10">
+        <p className="font-bold text-2xl text-center mb-3">
           Register Non-Teaching Staff
         </p>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+       
+          <Divider/>
+          <div className="mt-2">
+
+            <Avatar src={imageURL} sx={{ width: 120, height: 120 }} className="m-auto" />
+            <div className="flex gap-2 align-middle justify-center mt-2">
+              <label className="custom-file-input-button" >
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="file2"
+                  onChange={handleFileChange2}
+                  className="file-input"
+                  multiple
+
+                />
+                Upload
+              </label>
+              <Button className="bg-red-100 text-red-500" onClick={() => setImageURL('')}>Reset</Button>
+            </div>
+          </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mt-5">
           <div className="mb-3">
             <label
               style={{ display: 'flex', gap: '5px' }}
@@ -252,7 +302,7 @@ const postnonteacherdata=async(data:any)=>{
             </label>
             <input
               {...register('phone')}
-              type="text"
+              type="number"
               placeholder="+91 1234567890"
               id="default-input"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -304,39 +354,7 @@ const postnonteacherdata=async(data:any)=>{
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
           </div>
-          <div className="mb-3">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Facebook
-            </label>
-            <input
-              {...register('facebook')}
-              type="text"
-              id="default-input"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          <div className="mb-3">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Twitter
-            </label>
-            <input
-              {...register('twitter')}
-              type="text"
-              id="default-input"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          <div className="mb-3">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Linkedin
-            </label>
-            <input
-              {...register('linkedin')}
-              type="text"
-              id="default-input"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
+         
           <div className="mb-3">
             <label
               style={{ display: 'flex', gap: '5px' }}
@@ -389,7 +407,7 @@ const postnonteacherdata=async(data:any)=>{
           </div>
           <div className="mb-3">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Joining Salary
+              Salary
             </label>
             <input
               {...register('joiningsalary')}
@@ -445,7 +463,7 @@ const postnonteacherdata=async(data:any)=>{
             </label>
             <input
               {...register('accountnumber')}
-              type="text"
+              type="number"
               id="default-input"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
@@ -505,23 +523,7 @@ const postnonteacherdata=async(data:any)=>{
               multiple
             />
           </div>
-          <div>
-            <label
-              style={{ display: 'flex', gap: '5px' }}
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Image
-              <p style={{ color: 'red' }}>*</p>
-            </label>
-            <input
-              name="file2"
-              onChange={handleFileChange2}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              id="multiple_files"
-              type="file"
-              multiple
-            />
-          </div>
+        
         </div>
         <div style={{ display: 'flex', width: '100%', marginTop: '20px' }}>
           <Button type="submit" className="ml-auto  w-full" color="green">

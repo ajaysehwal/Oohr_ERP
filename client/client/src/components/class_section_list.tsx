@@ -12,7 +12,7 @@ import {
   import {useEffect} from "react";
   import { Spinner } from "@material-tailwind/react";
   import Cookies from 'universal-cookie';
-import empty from "./images/emptyopenbox.png"
+import empty from "./images/emptyfoldernew.png"
   import { XMarkIcon } from "@heroicons/react/24/solid";
    import React from 'react';
 import axios from "axios";
@@ -65,7 +65,6 @@ const successnotify = (text: string) =>
 
       try{
        const res=await axios.delete(`${url}/schoolsection/${key}`);
-        console.log(res.data);
         if(res.data.protocol41==true){
           successnotify('Delete Successfully')
           data[1](verified_token, "nursery");

@@ -68,7 +68,6 @@ export default function Createsubject() {
       } else {
         try{
           const res=await axios.get(`${url}/schoolsubjectscan/${data.subject}/${auth}/${data.class}`)
-          console.log(res);
           if(res.data.length>=1){
             notify(`${data.subject} subject already exists in class ${data.class}`)
           }else{
@@ -84,7 +83,6 @@ export default function Createsubject() {
    const postsubject=async(data:any)=>{
     try {
       const res = await axios.post(`${url}/schoolsubjects`, data);
-      console.log(res);
       setupload(false);
 
       getsubjectsdata(data.class, auth);
@@ -103,7 +101,6 @@ export default function Createsubject() {
       const res = await axios.get(
         `${url}/schoolsubjects/${classes}/${user_id}`,
       );
-      console.log(res);
       setgetsubjects(res.data);
       setlistload(false);
     } catch (err) {
@@ -113,7 +110,7 @@ export default function Createsubject() {
   };
   return (
     <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
-      <div className="flex flex-col gap-9">
+      <div data-aos="fade-right" className="flex flex-col gap-9">
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <div className="flex flex-col gap-9">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -246,7 +243,7 @@ export default function Createsubject() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-9">
+      <div data-aos="fade-left" className="flex flex-col gap-9">
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <div
             className="border-b border-stroke py-4 px-6.5 dark:border-strokedark"

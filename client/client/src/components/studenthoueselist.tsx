@@ -11,12 +11,11 @@ import {
    import React from 'react';
 import Cookies from "universal-cookie";
 import axios from "axios";
-import empty from "./images/emptyopenbox.png"
+import empty from "./images/emptyfoldernew.png"
 import {useState} from "react";
 import {Spinner} from "@material-tailwind/react";
 const Studenthouselist = ({data}) => {
   const url = String(import.meta.env.VITE_REACT_API_URL);
-   console.log(data[0])
     const cookies = new Cookies();
   const verified_token = cookies.get('_UID');
     const [open, setOpen] = React.useState(false);
@@ -42,7 +41,6 @@ const Studenthouselist = ({data}) => {
   
       try{
        const res=await axios.delete(`${url}/api.studenthouses/${key}`);
-        console.log(res.data);
          data[1](verified_token)
         setload(false);
       }catch(err){

@@ -8,6 +8,13 @@ import {
   Option,
   Typography,
 } from '@material-tailwind/react';
+import {
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
+import excelimg from "./images/excelimg.png";
 import { ToastContainer, toast } from 'react-toastify';
 
 import { useForm } from 'react-hook-form';
@@ -44,7 +51,9 @@ export default function Excelupload() {
   const cookies = new Cookies();
   const auth=cookies.get('_UID');
   const url = String(import.meta.env.VITE_REACT_API_URL);
-
+  const [open, setOpen] = React.useState(false);
+ 
+  const handleOpen = () => setOpen(!open);
   const handleFileChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setSelectedFile1(event.target.files[0]);
@@ -71,9 +80,15 @@ export default function Excelupload() {
                   'Content-Type': 'multipart/form-data',
                 },
               });
+              if(res.data.protocol41==true){
                successnotify('New student list successfully added')
+
+              }else{
+                notify('Something went wrong please try again later');
+
+              }
              }catch(err){
-               notify('Please Upload Excel File Only');
+              notify('Something went wrong please try again later');
               return err;
              }
           }
@@ -91,7 +106,7 @@ const [load,setload]=useState(false);
       setload(false);
     } catch (err) {
       setload(true);
-      console.log('error', err);
+      return err
     }
   };
   const getsectionbyclass=async(value:any,verified_token:any)=>{
@@ -102,7 +117,7 @@ const [load,setload]=useState(false);
       
     }catch(err){
      
-       console.log("error",err);
+      return err
     }
   }
  
@@ -157,7 +172,10 @@ const [load,setload]=useState(false);
         </div>
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload excel file only</label>
 <input onChange={handleFileChange1} className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file"/>
-<p className="mt-1 text-sm text-red-500 dark:text-red-300" id="file_input_help">* Please follow proper sequences of excel data</p>
+<p className="flex gap-2 mt-1 text-sm text-red-500 dark:text-red-300" id="file_input_help">* Please follow proper sequences of excel data</p>
+<p  onClick={handleOpen} className="flex gap-2 mt-1 text-sm text-blue-500 dark:text-blue-300" style={{cursor:'pointer'}} id="file_input_help"><p className='text-blue-900'>Click Here</p> for view excel sequences</p>
+<a href={`${url}/images/studentfiles/ExcelSequences.pdf`}><p className="flex gap-2 mt-1 text-sm text-blue-500 dark:text-blue-300" style={{cursor:'pointer'}} id="file_input_help"><p className='text-blue-900'>Click Here</p> for view excel sequences in pdf format</p></a>
+
 
         <Button
         color="blue"
@@ -189,6 +207,18 @@ const [load,setload]=useState(false);
           Upload
         </Button>
       </form>
+      <Dialog open={open} handler={handleOpen} size='xl'>
+        <DialogHeader>Correct sequences of excel data</DialogHeader>
+        <DialogBody divider>
+          <img src={excelimg} alt="" />
+        </DialogBody>
+        <DialogFooter>
+        
+          <Button variant="gradient" color="green" onClick={handleOpen}>
+            <span>Ok</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
     </div>
  
   );

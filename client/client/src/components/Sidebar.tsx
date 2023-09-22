@@ -65,14 +65,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
  // Function to remove a cookie
  const removeCookie = () => {
    cookies.remove('_UID');
+   document.location.href='/signin'
+
    window.location.reload();
-   <Navigate to="/signin"/>
+
  };
   return (
     <aside
       ref={sidebar}
       //  style={{background:"#cbd5e1"}}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidde duration-300 ease-linear bg-black dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidde duration-300 ease-linear bg-white dark:bg-boxdark lg:static lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
@@ -83,7 +85,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <img  className="h-16 w-22" style={{margin:"auto"}} src={logo} alt="Logo" />
           </NavLink>
            
-          <h2 style={{color:'white'}} className='text-2xl font-bold'>Oohr
+          <h2  className='text-2xl font-bold text-graydark'>Oohr
             <p style={{color:"rgb(235,183,71)"}}>Innovation</p>
           </h2>
 
@@ -120,11 +122,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <nav className="mt-5 py-1 px-4 lg:mt-9 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-graydark">
               MENU
             </h3>
 
-            <ul className="mb-6 flex flex-col gap-1.5">
+            <ul className="mb-6 flex flex-col gap-1.5 text-graydark">
               {/* <!-- Menu Item Dashboard --> */}
               <SidebarLinkGroup
                 activeCondition={
@@ -136,10 +138,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="/dashboard"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold duration-300 hover:text-white ease-in-out hover:bg-[#2196f3] dark:hover:bg-meta-4 ${
                           (pathname === '/dashboard' ||
                             pathname.includes('dashboard')) &&
-                          'bg-graydark dark:bg-meta-4'
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -202,8 +204,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/dashboard"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               School Management
@@ -227,7 +229,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '#' ||
                             pathname.includes('reception')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -272,7 +274,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -283,7 +285,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -294,7 +296,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -305,7 +307,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -316,7 +318,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -327,7 +329,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -338,7 +340,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -349,7 +351,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -360,7 +362,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/reception"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -383,10 +385,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold hover:text-white hover:bg-[#2196f3] duration-300 ease-in-out dark:hover:bg-meta-4 ${
                           (pathname === '/students' ||
                             pathname.includes('students')) &&
-                          'bg-graydark dark:bg-meta-4'
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -395,7 +397,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
 </svg>
 
@@ -428,8 +430,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/students/admissionform"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out  hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                              Student Admission form
@@ -439,8 +441,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/students/detailtable"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Student Details
@@ -450,7 +452,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentadmission"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -461,7 +463,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentadmission"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -472,7 +474,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentadmission"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -483,7 +485,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentadmission"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -494,7 +496,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentadmission"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -517,10 +519,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold hover:text-white duration-300 ease-in-out hover:bg-[#2196f3] dark:hover:bg-meta-4 ${
                           (pathname === '/human_resoures' ||
                             pathname.includes('human_resoures')) &&
-                          'bg-graydark dark:bg-meta-4'
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -529,7 +531,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
 </svg>
 
@@ -562,7 +564,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/human_resoures/department"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -573,8 +575,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/human_resoures/teaching-staff"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Teaching Staff
@@ -584,8 +586,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/human_resoures/non_teaching_staff"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Non Teaching Staff
@@ -595,7 +597,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/department"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -606,7 +608,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/department"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -617,7 +619,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/department"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -628,7 +630,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/department"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -639,7 +641,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/department"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -662,10 +664,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="/academics"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold hover:text-white duration-300 ease-in-out hover:bg-[#2196f3] dark:hover:bg-meta-4 ${
                           (pathname === '/academics' ||
                             pathname.includes('academics')) &&
-                          'bg-graydark dark:bg-meta-4'
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -674,7 +676,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
 </svg>
 
@@ -707,7 +709,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/academics/studentclasses"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -718,8 +720,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/academics/classes_sections"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Class sections
@@ -729,8 +731,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/academics/createsubjects"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Class Subjects
@@ -740,8 +742,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/academicsyllabus"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Academic Syllabus
@@ -751,30 +753,30 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/academics/createtimetable"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Create timetable
                             </NavLink>
                           </li>
-                          <li>
+                          {/* <li>
                             <NavLink
                               to="/academics/addschoolholiday"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Add Holiday
                             </NavLink>
-                          </li>
+                          </li> */}
                           <li>
                             <NavLink
                               to="/academics/schooltimetable"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Print Timetable
@@ -784,8 +786,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/parentmarketplace"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Parent Marketplace
@@ -795,8 +797,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studenthelplink"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Student help link
@@ -806,8 +808,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/deletebulkdata"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Delete bulk data
@@ -821,6 +823,191 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </SidebarLinkGroup>
               <SidebarLinkGroup
                 activeCondition={
+                  pathname === '/exams' || pathname.includes('exams')
+                }
+              >
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold duration-300 ease-in-out hover:text-white hover:bg-[#2196f3] dark:hover:bg-meta-4 ${
+                          (pathname === '/exams' ||
+                            pathname.includes('exams')) &&
+                      'bg-[#2196f3] dark:bg-meta-4 text-white'
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);
+                        }}
+                      >
+                     
+<svg   width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  <rect x="9" y="3" width="6" height="4" rx="2" /> 
+ <path d="M9 14l2 2l4 -4" /></svg>
+
+                        Exams and Marks
+                        <svg
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
+                            open && 'rotate-180'
+                          }`}
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                            fill=""
+                          />
+                        </svg>
+                      </NavLink>
+                      <div
+                        className={`translate transform overflow-hidden ${
+                          !open && 'hidden'
+                        }`}
+                      >
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li>
+                            <NavLink
+                              to="/exams"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
+                              }
+                            >
+                              Termly exam questions
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/exams"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-white')
+                              }
+                            >
+                              Termly examination
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/exams"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-white')
+                              }
+                            >
+                              CBT
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/exams"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-white')
+                              }
+                            >
+                              Termly student results
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
+             <SidebarLinkGroup
+                activeCondition={
+                  pathname === '/account' || pathname.includes('account')
+                }
+                   >
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="/account"
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold duration-300 ease-in-out hover:bg-[#2196f3] hover:text-white dark:hover:bg-meta-4 ${
+                          (pathname === '/account' ||
+                            pathname.includes('account')) &&
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);
+                        }}
+                      >
+                     
+                     <svg   width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  <rect x="9" y="3" width="6" height="4" rx="2" />  <line x1="9" y1="12" x2="9.01" y2="12" />  <line x1="13" y1="12" x2="15" y2="12" />
+                       <line x1="9" y1="16" x2="9.01" y2="16" />  <line x1="13" y1="16" x2="15" y2="16" /></svg>
+                        Account
+                        <svg
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
+                            open && 'rotate-180'
+                          }`}
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
+                            fill=""
+                          />
+                        </svg>
+                      </NavLink>
+                      <div
+                        className={`translate transform overflow-hidden ${
+                          !open && 'hidden'
+                        }`}
+                      >
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                        
+                         
+                         
+                          <li>
+                            <NavLink
+                              to="/account/managefees"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
+                              }
+                            >
+                              Manage Student Fee
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/account/payment-history"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
+                              }
+                            >
+                              Student Payment History
+                            </NavLink>
+                          </li>
+                       
+                           
+                          
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup> 
+              <SidebarLinkGroup
+                activeCondition={
                   pathname === '/setting' || pathname.includes('setting')
                 }
                    >
@@ -829,10 +1016,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="/setting"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold duration-300 ease-in-out hover:bg-[#2196f3] hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/setting' ||
                             pathname.includes('setting')) &&
-                          'bg-graydark dark:bg-meta-4'
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -899,8 +1086,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/systemsetting"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               System Settings
@@ -910,8 +1097,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/logo"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Logo
@@ -921,8 +1108,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/setting/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Student Categories
@@ -932,8 +1119,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/setting/studenthouses"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Student House
@@ -943,8 +1130,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/setting/studentclubs"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Student club
@@ -954,8 +1141,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Session Timeout
@@ -965,8 +1152,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Payment Method
@@ -976,8 +1163,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               SMS API Settings
@@ -987,8 +1174,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Email sending option
@@ -998,8 +1185,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               SMS sending option
@@ -1009,8 +1196,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Security
@@ -1020,7 +1207,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1031,7 +1218,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1042,7 +1229,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1053,7 +1240,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentcategories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1066,6 +1253,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   );
                 }}
               </SidebarLinkGroup>
+              
               {/* <SidebarLinkGroup
                 activeCondition={
                   pathname === '/live' || pathname.includes('live')
@@ -1076,7 +1264,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/liveclasses' ||
                             pathname.includes('live')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1121,7 +1309,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/zoomlive"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1132,7 +1320,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/zoomlive"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1155,7 +1343,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === 'download' ||
                             pathname.includes('download')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1200,7 +1388,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentassignment"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1211,7 +1399,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentassignment"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1234,7 +1422,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="/tasks"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === 'tasks' ||
                             pathname.includes('tasks')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1279,7 +1467,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/runningteamtask"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1290,7 +1478,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/archived team task"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1303,107 +1491,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   );
                 }}
               </SidebarLinkGroup> */}
-              {/* <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/exams' || pathname.includes('exams')
-                }
-              >
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <NavLink
-                        to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          (pathname === '/exams' ||
-                            pathname.includes('exams')) &&
-                          'bg-graydark dark:bg-meta-4'
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-
-                        Exams and Marks
-                        <svg
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                            open && 'rotate-180'
-                          }`}
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                            fill=""
-                          />
-                        </svg>
-                      </NavLink>
-                      <div
-                        className={`translate transform overflow-hidden ${
-                          !open && 'hidden'
-                        }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li>
-                            <NavLink
-                              to="/exams"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              Termly exam questions
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/exams"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              Termly examination
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/exams"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              CBT
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/exams"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              Termly student results
-                            </NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup> */}
+              {/* ------------ Exam ---------------*/}
+             
               {/* <SidebarLinkGroup
                 activeCondition={
                   pathname === '/attendance' || pathname.includes('attendance')
@@ -1414,7 +1503,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/attendance' ||
                             pathname.includes('attendance')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1459,7 +1548,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentattendance"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1470,7 +1559,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentattendance"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1481,7 +1570,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/studentattendance"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1504,7 +1593,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/invoice' ||
                             pathname.includes('invoice')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1549,7 +1638,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1560,7 +1649,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1571,7 +1660,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1582,7 +1671,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1593,7 +1682,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1604,7 +1693,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1615,7 +1704,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/invoice"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1638,7 +1727,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/library' ||
                             pathname.includes('library')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1683,7 +1772,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/library"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1694,7 +1783,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/library"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1705,7 +1794,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/library"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1716,7 +1805,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/library"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1727,7 +1816,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/library"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1738,7 +1827,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/library"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1761,7 +1850,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/hostel' ||
                             pathname.includes('hostel')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1806,7 +1895,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/hostel"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1817,7 +1906,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/hostel"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1828,7 +1917,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/hostel"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1851,7 +1940,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/transportation' ||
                             pathname.includes('transportation')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1896,7 +1985,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/transport"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1907,7 +1996,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/transport"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1918,7 +2007,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/transport"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1941,7 +2030,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/inventories' ||
                             pathname.includes('inventories')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -1986,7 +2075,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/inventories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -1997,7 +2086,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/inventories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2008,7 +2097,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/inventories"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2031,7 +2120,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/cerificate' ||
                             pathname.includes('cerificate')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -2076,7 +2165,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/certificate"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2087,7 +2176,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/certificate"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2110,7 +2199,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/support' ||
                             pathname.includes('support')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -2155,7 +2244,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/support"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2166,7 +2255,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/suppport"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2177,7 +2266,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/support"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2200,7 +2289,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="/communicate"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/communicate' ||
                             pathname.includes('/communicate')) &&
                           'bg-graydark dark:bg-meta-4'
@@ -2246,7 +2335,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               to="/Communicatte
                               "
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2257,7 +2346,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/  Communicatte  "
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2269,7 +2358,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               to="/communicatte
                               "
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2292,10 +2381,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="/operations"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold duration-300 hover:bg-[#2196f3] ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === 'operations' ||
                             pathname.includes('operations')) &&
-                          'bg-graydark dark:bg-meta-4'
+                          'bg-[#2196f3] dark:bg-meta-4 text-white'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -2304,7 +2393,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
@@ -2337,7 +2426,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/operations"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2348,7 +2437,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/operations"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2359,8 +2448,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/operations/announcement"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
                               Announcement
@@ -2376,9 +2465,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/calendar"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold duration-300 ease-in-out hover:text-white hover:bg-[#2196f3] dark:hover:bg-meta-4 ${
                     pathname.includes('calendar') &&
-                    'bg-graydark dark:bg-meta-4'
+                    'bg-[#2196f3] dark:bg-meta-4 text-white'
                   }`}
                 >
                   <svg
@@ -2401,7 +2490,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <li>
                 <NavLink
                   to="/profile"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                     pathname.includes('profile') && 'bg-graydark dark:bg-meta-4'
                   }`}
                 >
@@ -2429,7 +2518,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <li>
                 <NavLink
                   to="/tables"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                     pathname.includes('tables') && 'bg-graydark dark:bg-meta-4'
                   }`}
                 >
@@ -2465,9 +2554,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li onClick={removeCookie} style={{cursor:"pointer"}}>
                 <div
                   
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-semibold hover:bg-[#2196f3] duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                     pathname.includes('settings') &&
-                    'bg-graydark dark:bg-meta-4'
+                    'bg-[#2196f3] dark:bg-meta-4 text-white'
                   }`}
                 >
                   <svg
@@ -2507,7 +2596,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
           {/* <!-- Others Group --> */}
           {/* <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-graydark">
               OTHERS
             </h3>
 
@@ -2515,7 +2604,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/chart"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                     pathname.includes('chart') && 'bg-graydark dark:bg-meta-4'
                   }`}
                 >
@@ -2560,7 +2649,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/ui' || pathname.includes('ui')) &&
                           'bg-graydark dark:bg-meta-4'
                         }`}
@@ -2633,7 +2722,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/ui/alerts"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2644,7 +2733,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/ui/buttons"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2668,7 +2757,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4 ${
                           (pathname === '/auth' || pathname.includes('auth')) &&
                           'bg-graydark dark:bg-meta-4'
                         }`}
@@ -2737,7 +2826,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/auth/signin"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -2748,7 +2837,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/auth/signup"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >

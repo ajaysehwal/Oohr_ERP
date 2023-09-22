@@ -7,7 +7,7 @@ import {
     Input,
     Textarea,
   } from "@material-tailwind/react";
-  import empty from "./images/emptyopenbox.png";
+  import empty from "./images/emptyfoldernew.png";
   import {useEffect} from "react";
   import { Spinner } from "@material-tailwind/react";
   import Cookies from 'universal-cookie';
@@ -45,7 +45,6 @@ const Subjectlist = ({data}) => {
   
       try{
        const res=await axios.delete(`${url}/schoolsubjects/${key}`);
-        console.log(res.data);
         setload(false);
       }catch(err){
         setload(true);

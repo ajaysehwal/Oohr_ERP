@@ -43,7 +43,6 @@ const Studentholidaylist = ({data}) => {
   
       try{
        const res=await axios.delete(`${url}/schoolholiday/${key}`);
-        console.log(res.data);
         setload(false);
       }catch(err){
         setload(true);

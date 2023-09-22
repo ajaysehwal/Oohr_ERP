@@ -23,9 +23,9 @@ export default function Stats() {
         
         <div className="md:7/12 lg:w-1/2">
           <h2 className="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
-           Company Motto
+           Our Motto
           </h2>
-          <p className="my-8 text-gray-600 dark:text-gray-300">
+          <p data-aos='fade-right' className="my-8 text-gray-600 dark:text-gray-300">
           At the heart of our mission lies the resolute commitment to usher in a new era of education - one that is truly accessible to every child. As the winds of change sweep across the landscape, the imperative of digitalization resonates louder than ever. In this rapidly evolving world, schools stand as crucibles of transformation, poised to
            shape the brightest futures for our children. <br/> 
             <br/> Our guiding principle is crystal clear: To transform every school into a digital haven. We recognize education as an inherent right, and we understand that the future is intricately woven with technology. A tech-integrated and digitally adept school environment isn't a luxury; it's the cornerstone of a brighter tomorrow for our youth.

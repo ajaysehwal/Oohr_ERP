@@ -239,7 +239,6 @@ const successnotify = (text: string) =>
         }
         try{
             const res=await axios.get(`${url}/schoolstudentfees/${student_code}/${school_id}/August/${currentYear}`);
-            //  console.log(res.data[1])
            
                   if(res.data.length===0){
                             setaugustrec({status:"not_pay"})
@@ -365,7 +364,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setjanstatus('')
@@ -414,11 +412,9 @@ const successnotify = (text: string) =>
                         date:currentDate,
                         remain_balance:data.remain_amount==''?'0':data.remain_amount
                     }
-                console.log(send);
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                       get_fees_record(id,auth);
                          setfebstatus('')
                successnotify('Updated Successfully');
@@ -459,7 +455,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                        
@@ -508,7 +503,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                 if(res.data.protocol41==true){
                       get_fees_record(id,auth);
                        setaprilstatus('');
@@ -556,7 +550,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setmaystatus('')
@@ -603,7 +596,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setjunestatus('')
@@ -651,7 +643,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setjulystatus('')
@@ -703,7 +694,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setaugstatus('')
@@ -753,7 +743,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setseptstatus('')
@@ -802,7 +791,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setoctstatus('')
@@ -852,7 +840,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setnovstatus('')
@@ -902,7 +889,6 @@ const successnotify = (text: string) =>
             
                     try{
                const res=await axios.post(`${url}/studentfees`,send);
-               console.log(res.data);
                if(res.data.protocol41==true){
                 get_fees_record(id,auth);
                 setdecstatus('')
@@ -953,7 +939,6 @@ const handlesubmit_last_jan = async (data: any) => {
           
                   try{
              const res=await axios.post(`${url}/studentfees`,send);
-             console.log(res.data);
            get_fees_record(id,auth);
                 setjanstatus('')
              successnotify('Updated Successfully');
@@ -999,7 +984,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setfebstatus('')
            successnotify('Updated Successfully');
@@ -1042,7 +1027,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setmarstatus('')
            successnotify('Updated Successfully');
@@ -1086,7 +1071,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setaprilstatus('')
            successnotify('Updated Successfully');
@@ -1130,7 +1115,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setmaystatus('')
            successnotify('Updated Successfully');
@@ -1174,7 +1159,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setjunestatus('')
            successnotify('Updated Successfully');
@@ -1218,7 +1203,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setjulystatus('')
            successnotify('Updated Successfully');
@@ -1262,7 +1247,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
          setaugstatus('')
            successnotify('Updated Successfully');
@@ -1305,7 +1290,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setseptstatus('')
            successnotify('Updated Successfully');
@@ -1350,7 +1335,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setoctstatus('')
            successnotify('Updated Successfully');
@@ -1394,7 +1379,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setnovstatus('')
            successnotify('Updated Successfully');
@@ -1438,7 +1423,7 @@ const handlesubmit_last_jan = async (data: any) => {
         
                 try{
            const res=await axios.post(`${url}/studentfees`,send);
-           console.log(res.data);
+          
          get_fees_record(id,auth);
               setdecstatus('')
            successnotify('Updated Successfully');

@@ -104,7 +104,7 @@ const Header = (props: {
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {/* <!-- Dark Mode Toggler --> */}
-            <DarkModeSwitcher />
+            {/* <DarkModeSwitcher /> */}
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
@@ -112,7 +112,7 @@ const Header = (props: {
             {/* <!-- Notification Menu Area --> */}
 
             {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
+            {/* <DropdownMessage /> */}
             {/* <!-- Chat Notification Area --> */}
           </ul>
 
