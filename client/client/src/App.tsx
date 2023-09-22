@@ -1,53 +1,13 @@
-// import { Suspense, lazy, useEffect, useState } from 'react';
-// import { Route, Routes } from 'react-router-dom';
-// import { Toaster } from 'react-hot-toast';
 
-// import ECommerce from './pages/Dashboard/ECommerce';
-// import SignIn from './pages/Authentication/SignIn';
-// import SignUp from './pages/Authentication/SignUp';
-// import Loader from './common/Loader';
 import {coreRoutes} from "./routes/index";
-// const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
-
-// function App() {
-//   const [loading, setLoading] = useState<boolean>(true);
-
-//   useEffect(() => {
-//     setTimeout(() => setLoading(false), 1000);
-//   }, []);
-
-//   return loading ? (
-//     <Loader />
-//   ) : (
-//     <>
-//     <Toaster position='top-right' reverseOrder={false} containerClassName='overflow-auto'/>
-  
-//       <Routes>
-//         <Route path="/auth/signin" element={<SignIn />} />
-//         <Route path="/auth/signup" element={<SignUp />} />
-//         <Route element={<DefaultLayout />}>
-//           <Route index element={<ECommerce />} />
-//           {routes.map(({ path, component: Component }) => (
-//             <Route
-//               path={path}
-//               element={
-//                 <Suspense fallback={<Loader />}>
-//                   <Component />
-//                 </Suspense>
-//               }
-//             />
-//           ))}
-//         </Route>
-//       </Routes>
-//     </>
-//   );
-// }
-
-// export default App;
-import React from "react";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+
 import ECommerce from './pages/Dashboard/ECommerce';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
@@ -56,25 +16,53 @@ import PageNotfound from "./pages/404notfound";
 import Schooldetails from './pages/Authentication/signupsteps/register_school';
 import AddressDetails from './pages/Authentication/signupsteps/register_address';
 import Admindata from './pages/Authentication/signupsteps/finalstep';
+import axios from "axios";
+import { Fetchdata } from "./common/Loader";
+import FeeReceipt from "./components/FeeReceipt";
+const url = String(import.meta.env.VITE_REACT_API_URL);
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
+  const [Apiload,setApiload]=useState(false);
+  const API_TEST=async()=>{
+    setApiload(true);
+    try{
+   const Response=await axios.get(`${url}`);
+    if(Response.status===200){
+      setApiload(false);
+
+    }
+    setApiload(false);
+
+
+    }catch(err){
+      setApiload(true);
+
+      return err;
+    }
+  }
+  
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
+    API_TEST();
   }, []);
-
+  
   return loading ? (
     <Loader />
-  ) : (
-    <>
-<Routes>
+  )  :Apiload?(
+    <Fetchdata/>
+  ):(
+    <> 
+     
+    
+    <Routes>
       <Route index element={<Home/>} />
       <Route path="*" element={<PageNotfound/>}/>
         <Route path='/admin_account' element={<Admindata/>}/>
-    
+    {/* <Route path='/fee_r' element={<FeeReceipt/>}/> */}
        <Route path='/register_address' element={<AddressDetails/>}/>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
@@ -86,7 +74,7 @@ function App() {
              path={path}
               element={
                 <Suspense fallback={<Loader />}>
-                 <Component/>
+                 <Component mydata={undefined}/>
                 </Suspense>
               }
               />
@@ -94,6 +82,8 @@ function App() {
          </Route>
      </Routes>
     
+   
+
     </>
   );
 }
