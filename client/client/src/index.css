@@ -161,3 +161,46 @@ span.flatpickr-weekday,
 [x-cloak] {
   display: none !important;
 }
+.custom-file-input-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color:rgb(33,150,243);
+  font-weight: 600;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-file-input-button input {
+  display: none;
+}
+/* FeeReceipt.css */
+
+.fee-receipt {
+  font-family: 'Arial', sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fee-receipt h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.fee-receipt h2 {
+  font-size: 1.3rem;
+  color: #555;
+}
+
+.fee-receipt p {
+  margin: 10px 0;
+  color: #777;
+}
