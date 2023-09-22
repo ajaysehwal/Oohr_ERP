@@ -24,8 +24,9 @@ const Managestudentfees = lazy(() => import('../components/managestudentfees'));
 const Studentfeerecord = lazy(() => import('../components/studentfeerecord'));
 const Announcement = lazy(() => import('../components/Announcement'));
 const Studentdetailtable= lazy(() => import('../components/studenttable'));
-const PageNotfound= lazy(() => import('../pages/404notfound'));
 const  Nonteachertable=lazy(()=>import('../components/nonteachertable'));
+const ManageFees=lazy(()=>import('../components/Manage_Fees'));
+const Paymenthistory=lazy(()=>import('../components/paymenthistory'));
 export const coreRoutes = [
   {
     path: '/calendar',
@@ -142,10 +143,23 @@ export const coreRoutes = [
     component: Teacherdetailtable,
   },
   {
-    path: '*',
-    title: 'Not found',
-    component:PageNotfound,
+    path: '/account/managefees',
+    title: 'Student Fees Management',
+    component: ManageFees,
   },
+  {
+    path: '/account/payment-history',
+    title: 'Payment History',
+    component: Paymenthistory,
+  },
+  {
+    path: '/account/payment-history/:id',
+    title: 'Payment History',
+    component: Paymenthistory,
+  },
+ 
+
+ 
 ];
 
 
