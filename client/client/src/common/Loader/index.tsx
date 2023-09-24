@@ -1,3 +1,5 @@
+import Lottie from 'lottie-react';
+import fetching from "../../assets/animations/animation_lmh9u48z.json";
 const Loader = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-white">
@@ -5,5 +7,16 @@ const Loader = () => {
     </div>
   );
 };
-
+export const Fetchdata=()=>{
+  return (
+    <div className="flex h-screen items-center justify-center bg-white" style={{width:'200px',margin:'auto'}}>
+       <Lottie
+          
+          animationData={fetching} 
+          loop={true} 
+          autoplay={true}
+        />
+    </div>
+  )
+}
 export default Loader;
