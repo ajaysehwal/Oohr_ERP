@@ -105,10 +105,13 @@ export default function StudentAdmissionform() {
       setbtnload(false);
 
       notify(
+        
         'Please select student class if class is not there click on add button ',
       );
     } else {
       if (data.phone.length !== 10) {
+                      setbtnload(false);
+
         notify('Student contact number must be at least 10 characters');
       } else {
         try {
@@ -170,9 +173,9 @@ export default function StudentAdmissionform() {
               setload(false);
             } else {
               setload(false);
-              setbtnload(true);
+              setbtnload(false);
 
-              notify('Please Upload Student Image');
+              notify('Please Upload Student Document');
             }
           }
         } catch (err) {
