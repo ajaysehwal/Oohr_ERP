@@ -2,6 +2,7 @@
 
 import { Suspense, lazy, useEffect, useState } from 'react';
 
+
 const SchoolCalendar = lazy(() => import('../pages/Calendar'));
 const Studentadmissionform = lazy(() => import('../components/studentadmissionform'));
 const AddStudentHouse = lazy(() => import('../components/AddStudentHouse'));
@@ -27,6 +28,10 @@ const Studentdetailtable= lazy(() => import('../components/studenttable'));
 const  Nonteachertable=lazy(()=>import('../components/nonteachertable'));
 const ManageFees=lazy(()=>import('../components/Manage_Fees'));
 const Paymenthistory=lazy(()=>import('../components/paymenthistory'));
+const CreateExam=lazy(()=>import ('../components/create-exam'));
+const UploadStudentMarks=lazy(()=>import ('../components/upload-student-marks'));
+const PrintReportCard=lazy(()=>import ('../components/PrintReportCard'));
+
 export const coreRoutes = [
   {
     path: '/calendar',
@@ -156,6 +161,22 @@ export const coreRoutes = [
     path: '/account/payment-history/:id',
     title: 'Payment History',
     component: Paymenthistory,
+  },
+ 
+  {
+    path: '/exams/create-exams',
+    title: 'Create Exams',
+    component:CreateExam ,
+  },
+  {
+    path: '/exams/upload-student-marks',
+    title: 'Create Exams',
+    component:UploadStudentMarks ,
+  },
+  {
+    path: '/exams/print-report-card',
+    title: 'Create Exams',
+    component:PrintReportCard ,
   },
  
 
