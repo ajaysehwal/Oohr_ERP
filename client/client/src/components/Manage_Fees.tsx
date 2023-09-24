@@ -30,7 +30,6 @@ import EastIcon from '@mui/icons-material/East';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import axios from 'axios';
-
 import Select from 'react-select';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -59,6 +58,7 @@ interface Data {
   student_id: string;
   payment_status: string;
   view_history: string;
+  student_school_side_code:string;
 }
 
 function createData(
@@ -72,6 +72,7 @@ function createData(
   student_id: string,
   payment_status: string,
   view_history: string,
+  student_school_side_code:string,
 
 ): Data {
   return {
@@ -84,7 +85,8 @@ function createData(
     phone,
     student_id,
     payment_status,
-    view_history
+    view_history,
+    student_school_side_code,
   };
 }
 
@@ -163,7 +165,7 @@ const headCells: readonly HeadCell[] = [
     id: 'admission_no',
     numeric: false,
     disablePadding: true,
-    label: 'Ad.No',
+    label: 'Student ID',
   },
   {
     id: 'student_name',
@@ -265,7 +267,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 }
 
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import writinganimation from "./animations/writing.json";
@@ -284,8 +285,6 @@ interface EnhancedTableToolbarProps {
   handleClassfilter: any;
 }
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import TextField from '@mui/material/TextField';
-import InputAdornment from "@mui/material/InputAdornment";
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const coverttopdf: any = useRef();
   const generatepdf = useReactToPrint({
@@ -302,6 +301,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     'Sports Fee',
     'Transport Fee',
   ];
+  console.log(selecteddata)
 
   const monthsArray = [
     {
@@ -363,21 +363,22 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const setHandle = (e: any) => {
     setSelectedOptions(Array.isArray(e) ? e.map((el) => el.label) : []);
   };
-  const [token, setToken] = useState<string>('');
 
   // Function to generate a random 4-digit token
   const generateRandomToken = () => {
     const min = 1000;
     const max = 9999;
     const randomToken = Math.floor(Math.random() * (max - min + 1)) + min;
-    setToken(randomToken.toString());
+    return randomToken;
+
   };
   const currentYear = new Date().getFullYear();
-  console.log(selecteddata);
 
   const { register, handleSubmit, reset } = useForm();
   //  ----------------- Main form -----------------------
   const onSubmit = (data: any) => {
+   const token=generateRandomToken();
+
     let months: string = '';
     for (let i = 0; i <= selectedOptions.length - 1; i++) {
       months += selectedOptions[i] + ',';
@@ -387,9 +388,21 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     data.student_name = selecteddata[0].student_name;
     data.student_class = selecteddata[0].student_class;
     data.father_name = selecteddata[0].father_name;
+    data.student_school_side_code=selecteddata[0].student_school_side_code;
     const studentData = selecteddata[0];
     const student_id = studentData.student_id;
+    const currentDate = new Date();
 
+  const options:object = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  };
+
+  const formattedDate = currentDate.toLocaleString('en-US', options);
+  data.reciept_no = token;
+
+  data.date=formattedDate;
     if (data.tuition_amount === '') {
       notify('Please enter fees amount');
     } else {
@@ -402,9 +415,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           if (data.method === '') {
             notify('Please select method of payment');
           } else {
-            generateRandomToken();
-
-            data.token = token;
+            
             if (data.months.endsWith(',')) {
               data.months = data.months.slice(0, -1);
             }
@@ -422,10 +433,10 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   const handleOpen = (value: any) =>
     setopneotherfeetype(opneotherfeetype === value ? 0 : value);
   const [status, setstatus] = React.useState('');
-  const [reciptdata, setrecipt] = useState<object>({});
+  const [reciptdata, setrecipt] = useState([]);
   const [remainchange, setremainchange] = React.useState('');
   const HandlePostPayment = async (
-    data: any,
+    data: object,
     school_id: any,
     student_id: any,
     reset: any,
@@ -437,7 +448,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
       );
       if (response.data.Response === 'Updated') {
 
-        setrecipt(data);
+        setrecipt([data]);
         reset();
         setremainchange('');
         PaymenthandleOpen();
@@ -977,7 +988,7 @@ export default function ManageFees() {
       phone,
       student_id,
       payment_status,
-
+      student_school_side_code,
     }: Data) =>
       rows.push(
         createData(
@@ -990,7 +1001,8 @@ export default function ManageFees() {
           phone,
           student_id,
           payment_status,
-          "View_history"
+          "View_history",
+          student_school_side_code,
         ),
       ),
   );
@@ -1046,15 +1058,7 @@ export default function ManageFees() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  // const visibleRows = React.useMemo(
-  //   () =>
-  //     stableSort(rows, getComparator(order, orderBy)).slice(
-  //       page * rowsPerPage,
-  //       page * rowsPerPage + rowsPerPage,
-  //     ),
-  //   [order, orderBy, page, rowsPerPage],
-  // );
-  // console.log(visibleRows);
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(!open);
@@ -1083,7 +1087,6 @@ export default function ManageFees() {
       return err;
     }
   }
-  console.log(paymenthistory)
   return (
     <>
 
@@ -1173,7 +1176,7 @@ export default function ManageFees() {
                           scope="row"
                           padding="none"
                         >
-                          {row.admission_no}
+                          #{row.student_school_side_code}
                         </TableCell>
                         <TableCell align="right">{row.student_name}</TableCell>
                         <TableCell align="right">{row.father_name}</TableCell>
@@ -1293,11 +1296,11 @@ export default function ManageFees() {
           </tr>
         </thead>
         <tbody>
-          {paymenthistory.map(({ student_id, date,total_amount,months,status}, i) => (
+          {paymenthistory.map(({ student_id, date,total_amount,months,status,student_school_side_code}, i) => (
             <tr key={student_id} className="even:bg-blue-gray-50/50">
               <td className="p-4">
                 <Typography   className="font-normal">
-                  {student_id}
+                  #{student_school_side_code}
                 </Typography>
               </td>
               <td className="p-4">
