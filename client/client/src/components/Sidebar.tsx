@@ -874,46 +874,37 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li>
                             <NavLink
-                              to="/exams"
+                              to="/exams/create-exams"
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
                                 (isActive && '!text-[#2196f3]')
                               }
                             >
-                              Termly exam questions
+                             Create Exams
+                            </NavLink>
+                          </li>
+                       
+                         
+                          <li>
+                            <NavLink
+                              to="/exams/Upload-student-marks"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
+                                (isActive && '!text-[#2196f3]')
+                              }
+                            >
+                              Upload Student Marks
                             </NavLink>
                           </li>
                           <li>
                             <NavLink
-                              to="/exams"
+                              to="/exams/print-report-card"
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
-                                (isActive && '!text-white')
+                                (isActive && '!text-[#2196f3]')
                               }
                             >
-                              Termly examination
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/exams"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              CBT
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/exams"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              Termly student results
+                            Print Report Card
                             </NavLink>
                           </li>
                         </ul>
@@ -980,7 +971,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               to="/account/managefees"
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-graydark duration-300 ease-in-out hover:text-[#2196f3] ' +
-                                (isActive && '!text-[#2196f3]')
+                                (isActive && !'text-[#2196f3]')
                               }
                             >
                               Manage Student Fee
