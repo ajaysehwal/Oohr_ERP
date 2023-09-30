@@ -7,7 +7,11 @@ import {
   Select,
   Option,
   Typography,
+  Spinner,
 } from '@material-tailwind/react';
+import Lottie from 'lottie-react';
+import success from "./animations/animation_lmg0sv1v.json";
+
 import {
   Dialog,
   DialogHeader,
@@ -59,9 +63,12 @@ export default function Excelupload() {
       setSelectedFile1(event.target.files[0]);
     }
   };
+  const [btnload,setbtnload]=useState(false);
           const Onsubmit=(data:any)=>{
-           
+            setbtnload(true);
              if(selectedFile1){
+              setbtnload(true);
+
               const formData=new FormData();
                formData.append('file',selectedFile1);
                formData.append('admin_token',auth);
@@ -69,25 +76,33 @@ export default function Excelupload() {
                formData.append('section',data.section);
                   postexcelfile(formData);
              }else{
+              setbtnload(false);
+
                 notify("Please Upload Excel File Only")
              }
            
           }
           const postexcelfile=async(data:any)=>{
+            setbtnload(true);
+
              try{
               const res=await axios.post(`${url}/apiexceldata`,data,{
                 headers: {
                   'Content-Type': 'multipart/form-data',
                 },
               });
-              if(res.data.protocol41==true){
-               successnotify('New student list successfully added')
+              if(res.data.success==true){
+                handleSuccess()
+               setbtnload(false);
 
               }else{
                 notify('Something went wrong please try again later');
+                setbtnload(false);
 
               }
              }catch(err){
+              setbtnload(false);
+
               notify('Something went wrong please try again later');
               return err;
              }
@@ -124,6 +139,9 @@ const [load,setload]=useState(false);
   useEffect(() => {
     getclasses(auth);
   }, []);
+  const [Success, setSuccess] = useState(false);
+ 
+  const handleSuccess = () => setSuccess(!Success);
   return (
     <div>
       {/*  */}
@@ -161,7 +179,7 @@ const [load,setload]=useState(false);
                <option value="A">A</option>
                <option value="B">B</option>
                <option value="C">C</option>
-        {section?.map((el)=>(
+        {section?.map((el:{section:string})=>(
 
          <option value={el.section}>{el.section}</option>
 
@@ -190,7 +208,10 @@ const [load,setload]=useState(false);
             gap: '10px',
           }}
         >
-          <svg
+         
+           {btnload?<Spinner className='m-auto w-6 h-6'/>:(
+              <p className='flex align-middle gap-1'>
+                 <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -204,9 +225,35 @@ const [load,setload]=useState(false);
               d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
             />
           </svg>
-          Upload
+          <p className='mt-1'>
+              Upload
+          </p>
+        
+              </p>
+           )}
         </Button>
       </form>
+      <Dialog size='sm' open={Success} handler={handleSuccess}>
+        <DialogBody>
+           <div className='w-[200px] m-auto'>
+           <Lottie
+          
+          animationData={success} 
+          loop={false} 
+          autoplay={true}
+        />
+           </div>
+            <div className='m-auto grid grid-cols-1 gap-2'>
+            <p className='font-bold text-center text-2xl'>New Student List Successfully Uploaded</p>
+           <Button className='m-auto'  color="green" onClick={handleSuccess}>
+            <span>Ok</span>
+          </Button>
+            </div>
+         
+       
+        </DialogBody>
+       
+      </Dialog>
       <Dialog open={open} handler={handleOpen} size='xl'>
         <DialogHeader>Correct sequences of excel data</DialogHeader>
         <DialogBody divider>

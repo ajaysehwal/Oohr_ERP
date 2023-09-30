@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App.tsx';
@@ -11,7 +10,7 @@ import AuthContextProvider from './context/AuthContext';
 import { ThemeProvider } from "@material-tailwind/react";
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
 import "primereact/resources/primereact.min.css";                                       
-import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
+import { PrimeReactProvider} from 'primereact/api';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

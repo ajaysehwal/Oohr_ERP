@@ -1,5 +1,4 @@
 import {
-   Button,
   IconButton,
   Spinner,
   Dialog,
@@ -20,6 +19,21 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 export default function StudentAdmissionform() {
   const url = String(import.meta.env.VITE_REACT_API_URL);
   const [btnload, setbtnload] = useState(false);
@@ -47,7 +61,7 @@ export default function StudentAdmissionform() {
         if (file) {
       const reader = new FileReader();
 
-      reader.onload = (event) => {
+      reader.onload = (event:any) => {
         const url = event.target.result;
 
         setImageURL(url);
@@ -272,19 +286,14 @@ export default function StudentAdmissionform() {
 
             <Avatar src={imageURL} sx={{ width: 120, height: 120 }} className="m-auto" />
             <div className="flex gap-2 align-middle justify-center mt-2">
-            <label className="custom-file-input-button" >
-          <input
-          type="file"
-          accept="image/*"
+          
+        <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+      Upload 
+      <VisuallyHiddenInput  accept="image/*"
           name="file2"
-          onChange={handleFileChange2}
-          className="file-input"
-          multiple
-
-        />
-        Upload
-      </label>
-              <Button className="bg-red-100 text-red-500" onClick={()=>setImageURL('')}>Reset</Button>
+          onChange={handleFileChange2}  multiple type="file" />
+    </Button>
+              <Button variant="outlined" color="error" className="bg-red-100 text-red-500" onClick={()=>setImageURL('')}>Reset</Button>
             </div>
           </div>
 
@@ -439,7 +448,7 @@ export default function StudentAdmissionform() {
                 className="bg-gray-50 border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 block w-full rounded-lg border p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
                 <option value="">Select House</option>
-                {gethouses?.map((el) => (
+                {gethouses?.map((el:any) => (
                   <option value={el.house_name}>{el.house_name}</option>
                 ))}
               </select>
@@ -473,7 +482,7 @@ export default function StudentAdmissionform() {
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
-                {section?.map((el) => (
+                {section?.map((el:any) => (
                   <option value={el.section}>{el.section}</option>
                 ))}
               </select>
@@ -722,7 +731,7 @@ export default function StudentAdmissionform() {
           </div>
 
         
-          <Button color="blue" type="submit" className="mt-6" fullWidth>
+          <Button color="success" variant="contained" type="submit" className="mt-6" fullWidth>
             {btnload ? <Spinner style={{ margin: 'auto' }} /> : 'Register'}
           </Button>
         </form>
@@ -739,7 +748,7 @@ export default function StudentAdmissionform() {
            </div>
             <div className='m-auto grid grid-cols-1 gap-2'>
             <p className='font-bold text-center text-2xl'>Student successfully registerd</p>
-           <Button className='m-auto' variant="gradient" color="green" onClick={successok}>
+           <Button className='m-auto'  color="success" onClick={successok}>
             <span>Ok</span>
           </Button>
             </div>

@@ -8,9 +8,11 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 
-import ECommerce from './pages/Dashboard/ECommerce';
 import SignIn from './pages/Authentication/SignIn';
+import ECommerce from './pages/Dashboard/ECommerce';
+
 import SignUp from './pages/Authentication/SignUp';
+
 import Loader from './common/Loader';
 import PageNotfound from "./pages/404notfound";
 import Schooldetails from './pages/Authentication/signupsteps/register_school';

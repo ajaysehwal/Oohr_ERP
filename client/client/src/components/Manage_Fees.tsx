@@ -137,21 +137,7 @@ const notify = (text: string) =>
     theme: 'light',
   });
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-//   function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-//     const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-//     stabilizedThis.sort((a, b) => {
-//       const order = comparator(a[0], b[0]);
-//       if (order !== 0) {
-//         return order;
-//       }
-//       return a[1] - b[1];
-//     });
-//     return stabilizedThis.map((el) => el[0]);
-//   }
+
 
 interface HeadCell {
   disablePadding: boolean;
@@ -301,7 +287,6 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
     'Sports Fee',
     'Transport Fee',
   ];
-  console.log(selecteddata)
 
   const monthsArray = [
     {
@@ -1296,7 +1281,7 @@ export default function ManageFees() {
           </tr>
         </thead>
         <tbody>
-          {paymenthistory.map(({ student_id, date,total_amount,months,status,student_school_side_code}, i) => (
+          {paymenthistory.length===0?"No History Available":paymenthistory.map(({ student_id, date,total_amount,months,status,student_school_side_code}, i) => (
             <tr key={student_id} className="even:bg-blue-gray-50/50">
               <td className="p-4">
                 <Typography   className="font-normal">

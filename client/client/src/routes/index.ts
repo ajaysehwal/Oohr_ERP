@@ -14,7 +14,6 @@ const Teacherdetailtable = lazy(() => import('../components/teacherstable'));
 // const Teacherspage = lazy(() => import('../components/teacherspage'));
 const Teachertable=lazy(()=>import('../components/teacherstable'));
 const Createtimetable = lazy(() => import('../components/createtimetable'));
-const Studentdetailspage = lazy(() => import('../components/studentdetailspage'));
 const AddClasses_section = lazy(() => import('../components/addclass_section'))
 const Schooltimetable = lazy(() => import('../components/schooltimetable'));
 const Createsubject = lazy(() => import('../components/createsubject'));
@@ -31,6 +30,7 @@ const Paymenthistory=lazy(()=>import('../components/paymenthistory'));
 const CreateExam=lazy(()=>import ('../components/create-exam'));
 const UploadStudentMarks=lazy(()=>import ('../components/upload-student-marks'));
 const PrintReportCard=lazy(()=>import ('../components/PrintReportCard'));
+const NewStudentDetail=lazy(()=>import ('../components/NewStudentDetail'));
 
 export const coreRoutes = [
   {
@@ -87,10 +87,6 @@ export const coreRoutes = [
     path: '/academics/classes_sections',
     title: 'Academics',
     component: AddClasses_section,
-  }, {
-    path: '/students/studentdetails/:id',
-    title: 'Operations',
-    component: Studentdetailspage,
   },
    {
     path: '/setting/studenthouses',
@@ -179,7 +175,12 @@ export const coreRoutes = [
     component:PrintReportCard ,
   },
  
-
+  {
+    path: '/students/detailtable/:id',
+    title: 'Student Details',
+    component:NewStudentDetail ,
+  },
+  
  
 ];
 
